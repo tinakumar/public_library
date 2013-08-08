@@ -21,7 +21,7 @@ class Book
 
   def unshelf(title, author)
     #maybe staging area, if book is not in proper location
-    while @status == Available && @location == Nil
+    while @status == "Available" && @location == "Nil"
       if self.title.start_with?("A", "B", "C", "D", "E", "F", "G")
         location == "ST3"
         "#{book.title} by #{book.author} is located on shelf ST3."
