@@ -37,8 +37,13 @@ end
 class Library < Book
   #should be aware of number of shelves
   #method to report all books it contains
-  def initialize
+  @@shelf_number = 0
+
+  def initialize(shelf, book)
     @library = []
+    @shelf = shelf
+    @book = book
+    @@shelf_number += 1
   end
 
   def book_inventory
@@ -47,19 +52,17 @@ class Library < Book
   puts "There are #{books.count} books in this library"
 
   def number_of_shelves
-    if Shelf.number.unique?
-      @shelf = Shelf.number.count
-    end
+    @@shelf_number.count
   end
 end
 
-class Shelf < Book
+class Shelf
   #should know what book it contains
-  attr_accessor :number
+  attr_accessor :shelf_number, :shelf_name
 
   def book_on_shelf
     @books = Book.all
-    shelf = @books.find{ |book| book.location == "#{location}"}
+    location = @books.find{ |book| book.location == "#{location}"}
     "This shelf contains #{book.title} by #{book.author}"
   end
 end
